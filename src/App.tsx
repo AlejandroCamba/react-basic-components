@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import UserInput from './user-input/user-input';
+import UserOutput from './user-output/user-output';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    username: 'alejandrocamb'
+  };
+
+  usernameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      username: event.target.value
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <UserInput
+          username={this.state.username}
+          usernameHandler={this.usernameHandler}
+        ></UserInput>
+        <UserOutput username={this.state.username}></UserOutput>
+      </div>
+    );
+  }
 }
 
 export default App;
